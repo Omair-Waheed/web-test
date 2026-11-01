@@ -317,7 +317,7 @@ a:hover {
    6. NAVIGATION
 ========================================================= */
 
-.main-nav ul {
+.main-nav > ul {
     display: flex;
     align-items: center;
     gap: 20px;
