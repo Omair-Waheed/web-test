@@ -1,0 +1,187 @@
+
+<!-- =====================================================
+     DOCUMENT METADATA
+===================================================== -->
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- =====================================================
+     PAGE TITLE
+===================================================== -->
+
+<title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+
+
+<!-- =====================================================
+     SEO METADATA
+===================================================== -->
+
+<meta
+    name="description"
+    content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}"
+>
+
+<meta name="author" content="{{ site.title | escape }}">
+
+<meta name="robots" content="index, follow">
+
+<meta name="googlebot" content="index, follow, max-image-preview:large">
+
+<meta name="language" content="English">
+
+
+<!-- =====================================================
+     CANONICAL URL
+===================================================== -->
+
+<link
+    rel="canonical"
+    href="{{ page.url | replace: 'index.html', '' | absolute_url }}"
+>
+
+
+<!-- =====================================================
+     OPEN GRAPH / SOCIAL SHARING
+===================================================== -->
+
+<meta property="og:type" content="website">
+
+<meta
+    property="og:title"
+    content="{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}"
+>
+
+<meta
+    property="og:description"
+    content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}"
+>
+
+<meta
+    property="og:url"
+    content="{{ page.url | replace: 'index.html', '' | absolute_url }}"
+>
+
+<meta property="og:site_name" content="{{ site.title | escape }}">
+
+<meta property="og:locale" content="en_CA">
+
+
+<!-- Social sharing image -->
+
+{% assign social_image = page.image | default: site.social_image %}
+
+{% if social_image %}
+<meta
+    property="og:image"
+    content="{{ social_image | absolute_url }}"
+>
+<meta
+    property="og:image:alt"
+    content="{{ page.image_alt | default: site.title | escape }}"
+>
+{% endif %}
+
+
+<!-- =====================================================
+     TWITTER / X CARD
+===================================================== -->
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta
+    name="twitter:title"
+    content="{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}"
+>
+
+<meta
+    name="twitter:description"
+    content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}"
+>
+
+{% if social_image %}
+<meta
+    name="twitter:image"
+    content="{{ social_image | absolute_url }}"
+>
+{% endif %}
+
+
+<!-- =====================================================
+     FAVICONS
+===================================================== -->
+
+<link
+    rel="icon"
+    href="{{ '/favicon.ico' | relative_url }}"
+    sizes="any"
+>
+
+<link
+    rel="icon"
+    href="{{ '/icon.svg' | relative_url }}"
+    type="image/svg+xml"
+>
+
+<link
+    rel="apple-touch-icon"
+    href="{{ '/icon.png' | relative_url }}"
+>
+
+
+<!-- =====================================================
+     STYLESHEET
+===================================================== -->
+
+<link
+    rel="stylesheet"
+    href="{{ '/assets/css/style.css' | relative_url }}"
+>
+
+
+<!-- =====================================================
+     THEME INITIALIZATION
+
+     Apply the saved theme before the page renders.
+     Prevents the wrong theme flashing briefly.
+===================================================== -->
+
+<script>
+(function () {
+
+    let theme = 'system';
+
+    try {
+
+        const savedTheme = localStorage.getItem('site-theme');
+
+        if (['light', 'dark', 'system'].includes(savedTheme)) {
+            theme = savedTheme;
+        }
+
+    } catch (error) {
+
+        // Continue using system preference.
+
+    }
+
+    if (theme === 'light' || theme === 'dark') {
+
+        document.documentElement.setAttribute('data-theme', theme);
+
+    }
+
+})();
+</script>
+
+
+<!-- =====================================================
+     BROWSER THEME COLOUR
+===================================================== -->
+
+<meta
+    name="theme-color"
+    content="#172b21"
+>

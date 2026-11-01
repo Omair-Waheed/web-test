@@ -1,0 +1,134 @@
+
+<header class="site-header">
+    <div class="container nav-container">
+
+        <!-- Site branding -->
+        <a href="{{ '/' | relative_url }}" class="site-logo">
+            <img
+                src="{{ '/assets/images/logo.png' | relative_url }}"
+                alt="1867 Royal Canadian Army Cadet Corps"
+            >
+            <span>Cadet Corps</span>
+        </a>
+
+        <!-- Mobile navigation toggle -->
+        <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="main-navigation"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Main navigation -->
+        <nav
+            class="main-nav"
+            id="main-navigation"
+            aria-label="Main navigation"
+        >
+            <ul>
+
+                <li>
+                    <a href="{{ '/' | relative_url }}">Home</a>
+                </li>
+
+                <!-- About -->
+                <li class="has-dropdown">
+                    <a href="{{ '/about/' | relative_url }}">
+                        About
+                    </a>
+
+                    <ul class="dropdown">
+                        <li><a href="{{ '/about/' | relative_url }}">Overview</a></li>
+                        <li><a href="{{ '/about/history.html' | relative_url }}">History</a></li>
+                        <li><a href="{{ '/about/staff.html' | relative_url }}">Staff</a></li>
+                        <li><a href="{{ '/about/cadet-program.html' | relative_url }}">Cadet Program</a></li>
+                    </ul>
+                </li>
+
+                <!-- Cadets -->
+                <li class="has-dropdown">
+                    <a href="{{ '/cadets/' | relative_url }}">
+                        Cadets
+                    </a>
+
+                    <ul class="dropdown">
+                        <li><a href="{{ '/cadets/' | relative_url }}">Overview</a></li>
+                        <li><a href="{{ '/cadets/resources.html' | relative_url }}">Resources</a></li>
+                        <li><a href="{{ '/cadets/training.html' | relative_url }}">Training</a></li>
+                        <li><a href="{{ '/cadets/dress.html' | relative_url }}">Dress</a></li>
+                        <li><a href="{{ '/cadets/conduct.html' | relative_url }}">Conduct</a></li>
+                        <li><a href="{{ '/cadets/forms.html' | relative_url }}">Forms</a></li>
+                    </ul>
+                </li>
+
+                <!-- Parents -->
+                <li class="has-dropdown">
+                    <a href="{{ '/parents/' | relative_url }}">
+                        Parents
+                    </a>
+
+                    <ul class="dropdown">
+                        <li><a href="{{ '/parents/' | relative_url }}">Overview</a></li>
+                        <li><a href="{{ '/parents/committee.html' | relative_url }}">Committee</a></li>
+                        <li><a href="{{ '/parents/volunteering.html' | relative_url }}">Volunteering</a></li>
+                        <li><a href="{{ '/parents/fundraising.html' | relative_url }}">Fundraising</a></li>
+                        <li><a href="{{ '/parents/parent-information.html' | relative_url }}">Parent Information</a></li>
+                    </ul>
+                </li>
+
+                <!-- News -->
+                <li class="has-dropdown">
+                    <a href="{{ '/news/' | relative_url }}">
+                        News
+                    </a>
+
+                    <ul class="dropdown">
+                        <li><a href="{{ '/news/' | relative_url }}">Overview</a></li>
+                        <li><a href="{{ '/news/announcements.html' | relative_url }}">Announcements</a></li>
+                        <li><a href="{{ '/news/calendar.html' | relative_url }}">Calendar</a></li>
+                        <li><a href="{{ '/news/gallery.html' | relative_url }}">Gallery</a></li>
+                    </ul>
+                </li>
+
+                <!-- Primary actions -->
+                <li>
+                    <a href="{{ '/join/' | relative_url }}" class="nav-join">
+                        Join
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ '/parents/donate.html' | relative_url }}" class="nav-donate">
+                        Donate
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ '/contact/' | relative_url }}">
+                        Contact
+                    </a>
+                </li>
+
+                <!-- Theme toggle -->
+                <li class="theme-control">
+                    <button
+                        type="button"
+                        class="theme-toggle"
+                        id="theme-toggle"
+                        aria-label="Switch to dark mode"
+                        title="Switch theme"
+                    >
+                        <span class="theme-icon" aria-hidden="true">☾</span>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+</header>

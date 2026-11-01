@@ -1,0 +1,1169 @@
+
+/* =========================================================
+   1867 ROYAL CANADIAN ARMY CADET CORPS
+   Main Stylesheet
+
+   Sections:
+   1. CSS Variables
+   2. General / Reset
+   3. Typography
+   4. Buttons and Links
+   5. Header
+   6. Navigation
+   7. Dropdown Navigation
+   8. Main Content
+   9. Footer
+   10. Accessibility
+   11. Responsive Design
+   12. Reduced Motion
+========================================================= */
+
+
+/* =========================================================
+   1. CSS VARIABLES
+
+   Central location for colours and reusable values.
+   Change these values to update the overall site theme.
+========================================================= */
+
+:root {
+
+    /* Primary branding */
+    --color-primary: #172b21;
+    --color-primary-light: #203b2d;
+    --color-primary-dark: #102019;
+
+    /* Accent branding */
+    --color-accent: #c5a64a;
+    --color-accent-light: #d6b75b;
+
+    /* Light theme surfaces */
+    --color-background: #ffffff;
+    --color-surface: #f5f6f4;
+    --color-surface-raised: #ffffff;
+
+    /* Text */
+    --color-text: #222222;
+    --color-text-light: #555555;
+    --color-text-muted: #777777;
+
+    /* Borders */
+    --color-border: #dddddd;
+
+    /* General */
+    --color-white: #ffffff;
+
+    /* Typography */
+    --font-main: "Segoe UI", Arial, Helvetica, sans-serif;
+
+    /* Layout */
+    --container-width: 1200px;
+    --container-padding: 4%;
+
+    /* Spacing */
+    --spacing-small: 10px;
+    --spacing-medium: 20px;
+    --spacing-large: 40px;
+
+    /* Effects */
+    --transition-speed: 0.2s;
+    --border-radius: 4px;
+
+    /* Theme colour transitions */
+    color-scheme: light;
+}
+
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+
+html[data-theme="dark"] {
+
+    /* Dark surfaces */
+    --color-background: #141a16;
+    --color-surface: #1d2720;
+    --color-surface-raised: #26332a;
+
+    /* Text */
+    --color-text: #e8ebe7;
+    --color-text-light: #c2c9c2;
+    --color-text-muted: #9da79e;
+
+    /* Borders */
+    --color-border: #39473c;
+
+    /* Accent adjustments */
+    --color-accent: #d6b75b;
+    --color-accent-light: #e4ca76;
+
+    color-scheme: dark;
+}
+
+
+/* =========================================================
+   SYSTEM PREFERENCE
+   Used when the visitor hasn't manually selected a theme.
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) {
+
+        --color-background: #141a16;
+        --color-surface: #1d2720;
+        --color-surface-raised: #26332a;
+
+        --color-text: #e8ebe7;
+        --color-text-light: #c2c9c2;
+        --color-text-muted: #9da79e;
+
+        --color-border: #39473c;
+
+        --color-accent: #d6b75b;
+        --color-accent-light: #e4ca76;
+
+        color-scheme: dark;
+    }
+
+}
+
+
+/* =========================================================
+   2. GENERAL / RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background: var(--color-background);
+    line-height: 1.6;
+}
+
+/* Images should never overflow their containers */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Consistent content width */
+
+.container {
+    width: min(
+        calc(100% - 2 * var(--container-padding)),
+        var(--container-width)
+    );
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Remove default list spacing where appropriate */
+
+ul,
+ol {
+    padding-left: 25px;
+}
+
+
+/* =========================================================
+   3. TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.25;
+    color: var(--color-text);
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   4. BUTTONS AND LINKS
+========================================================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* General reusable button */
+
+.button {
+    display: inline-block;
+    padding: 11px 22px;
+
+    background: var(--color-primary);
+    color: var(--color-white);
+
+    border: none;
+    border-radius: var(--border-radius);
+
+    font: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition:
+        background var(--transition-speed) ease,
+        color var(--transition-speed) ease;
+}
+
+.button:hover {
+    background: var(--color-primary-light);
+    color: var(--color-white);
+}
+
+/* Gold button variation */
+
+.button-accent {
+    background: var(--color-accent);
+    color: var(--color-primary);
+}
+
+.button-accent:hover {
+    background: var(--color-accent-light);
+    color: var(--color-primary);
+}
+
+
+/* =========================================================
+   5. HEADER
+========================================================= */
+
+.site-header {
+    position: relative;
+    z-index: 1000;
+
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Main header container */
+
+.nav-container {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+/* Logo and organization name */
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--color-white);
+
+    font-size: 21px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.site-logo:hover {
+    color: var(--color-accent-light);
+}
+
+.site-logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   6. NAVIGATION
+========================================================= */
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    position: relative;
+}
+
+.main-nav a {
+    display: block;
+
+    padding: 12px 0;
+
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.main-nav a:hover {
+    color: var(--color-accent-light);
+}
+
+/* Join navigation button */
+
+.nav-join {
+    display: inline-block !important;
+
+    padding: 11px 20px !important;
+
+    background: var(--color-accent);
+    color: var(--color-primary) !important;
+
+    border-radius: var(--border-radius);
+    font-weight: 700 !important;
+}
+
+.nav-join:hover {
+    background: var(--color-accent-light);
+    color: var(--color-primary) !important;
+}
+
+/* Donate navigation button */
+
+.nav-donate {
+    display: inline-block !important;
+
+    padding: 11px 20px !important;
+
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+
+    color: var(--color-white) !important;
+    font-weight: 700 !important;
+}
+
+.nav-donate:hover {
+    background: var(--color-accent);
+    color: var(--color-primary) !important;
+}
+
+
+/* =========================================================
+   7. DROPDOWN NAVIGATION
+========================================================= */
+
+/* Desktop dropdown */
+
+.dropdown {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: -15px;
+
+    min-width: 210px;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    background: var(--color-primary-light);
+
+    padding: 10px;
+
+    border-top: 3px solid var(--color-accent);
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+
+    z-index: 1001;
+}
+
+/* Dropdown links */
+
+.dropdown li {
+    width: 100%;
+}
+
+.dropdown li a {
+    display: block;
+    padding: 10px 12px;
+    white-space: nowrap;
+}
+
+/* Show dropdown when hovering or using keyboard */
+
+.has-dropdown:hover > .dropdown,
+.has-dropdown:focus-within > .dropdown {
+    display: flex;
+}
+
+
+/* =========================================================
+   8. MOBILE NAVIGATION BUTTON
+========================================================= */
+
+/* Hidden on desktop */
+
+.nav-toggle {
+    display: none;
+
+    padding: 10px;
+
+    background: transparent;
+    border: none;
+    border-radius: var(--border-radius);
+
+    cursor: pointer;
+}
+
+/* Hamburger icon */
+
+.nav-toggle span {
+    display: block;
+
+    width: 26px;
+    height: 3px;
+
+    margin: 5px 0;
+
+    background: var(--color-white);
+    border-radius: 2px;
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* =========================================================
+   9. MAIN CONTENT
+========================================================= */
+
+.site-main {
+    min-height: 60vh;
+
+    padding-top: 50px;
+    padding-bottom: 70px;
+}
+
+/* Standard page heading */
+
+.page-header {
+    margin-bottom: 35px;
+}
+
+.page-header h1 {
+    margin: 0 0 12px;
+
+    color: var(--color-text);
+
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.2;
+}
+
+.page-header p {
+    max-width: 750px;
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+}
+
+/* Main page content */
+
+.page-content {
+    line-height: 1.7;
+}
+
+/* Individual content sections */
+
+.page-section {
+    margin-bottom: 40px;
+}
+
+.page-section h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Optional content divider */
+
+.section-divider {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 40px 0;
+}
+
+/* =========================================================
+   10. FOOTER
+========================================================= */
+
+.site-footer {
+    padding-top: 55px;
+
+    background: var(--color-primary);
+    color: #dddddd;
+}
+
+/* Footer columns */
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+
+    gap: 35px;
+
+    padding-bottom: 45px;
+}
+
+/* Footer branding */
+
+.footer-brand img {
+    width: 65px;
+    height: 65px;
+
+    object-fit: contain;
+}
+
+.footer-brand h3 {
+    margin-top: 15px;
+    margin-bottom: 12px;
+
+    color: var(--color-white);
+    font-size: 18px;
+}
+
+.footer-brand p {
+    color: #bbbbbb;
+    line-height: 1.7;
+}
+
+/* Footer headings */
+
+.site-footer h3 {
+    color: var(--color-white);
+
+    margin-top: 0;
+    margin-bottom: 18px;
+
+    font-size: 18px;
+}
+
+/* Footer navigation lists */
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+/* Footer links */
+
+.footer-links a,
+.footer-bottom a {
+    color: #bbbbbb;
+    font-size: 14px;
+}
+
+.footer-links a:hover,
+.footer-bottom a:hover {
+    color: var(--color-accent-light);
+}
+
+/* Footer bottom bar */
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px 0;
+}
+
+.footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.footer-bottom span {
+    margin: 0 8px;
+}
+
+
+/* =========================================================
+   11. ACCESSIBILITY
+========================================================= */
+
+/* Skip navigation link */
+
+.skip-link {
+    position: absolute;
+
+    top: -100px;
+    left: 10px;
+
+    z-index: 2000;
+
+    padding: 12px 18px;
+
+    background: var(--color-white);
+    color: var(--color-primary);
+
+    border: 2px solid var(--color-accent);
+    border-radius: var(--border-radius);
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+/* Visible keyboard focus */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--color-accent-light);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   12. RESPONSIVE DESIGN
+========================================================= */
+
+/* TABLET AND SMALLER DESKTOP
+   Navigation changes to a collapsible mobile menu.
+*/
+
+@media (max-width: 1000px) {
+
+    /* Display hamburger button */
+
+    .nav-toggle {
+        display: block;
+    }
+
+    /* Main mobile navigation container */
+
+    .main-nav {
+        display: none;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        background: var(--color-primary);
+
+        padding: 15px 4%;
+
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+
+    /* JavaScript adds this class when opened */
+
+    .main-nav.active {
+        display: block;
+    }
+
+    /* Main navigation list */
+
+    .main-nav > ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .main-nav > ul > li {
+        width: 100%;
+    }
+
+    .main-nav a {
+        padding: 12px;
+    }
+
+    /* Mobile dropdowns */
+
+    .dropdown {
+        display: none;
+
+        position: static;
+
+        width: 100%;
+        min-width: 0;
+
+        padding: 0 0 0 15px;
+
+        background: var(--color-primary-light);
+
+        border-top: 0;
+        box-shadow: none;
+    }
+
+    /* Only expand dropdowns when JavaScript adds .open */
+
+    .has-dropdown.open > .dropdown {
+        display: flex;
+    }
+
+    /* Disable desktop hover behaviour on touch-sized layouts */
+
+    .has-dropdown:hover > .dropdown {
+        display: none;
+    }
+
+    .has-dropdown.open:hover > .dropdown {
+        display: flex;
+    }
+
+    /* Footer columns */
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* MOBILE PHONES */
+
+@media (max-width: 550px) {
+
+    /* Header */
+
+    .nav-container {
+        min-height: 70px;
+    }
+
+    .site-logo {
+        font-size: 18px;
+    }
+
+    .site-logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Main content */
+
+    .site-main {
+        padding-top: 35px;
+        padding-bottom: 50px;
+    }
+
+    /* Footer */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-bottom .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   13. REDUCED MOTION
+
+   Respect visitors who prefer reduced animations.
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+
+/* =========================================================
+   DARK MODE COMPONENT ADJUSTMENTS
+========================================================= */
+
+/* Main page backgrounds */
+
+.site-main {
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+/* Content cards */
+
+.content-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 25px;
+}
+
+/* Raised content areas */
+
+.content-panel {
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* Links within main content */
+
+.page-content a:not(.button) {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+html[data-theme="dark"] .page-content a:not(.button) {
+    color: var(--color-accent-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    .page-content a:not(.button) {
+        color: var(--color-accent-light);
+    }
+}
+
+/* Tables */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+th {
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+
+td {
+    color: var(--color-text);
+}
+
+/* Form elements */
+
+input,
+textarea,
+select {
+    max-width: 100%;
+    padding: 10px 12px;
+
+    font: inherit;
+
+    color: var(--color-text);
+    background: var(--color-surface-raised);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Text selection */
+
+::selection {
+    background: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* Theme toggle button (for future header integration) */
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: transparent;
+    color: var(--color-white);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+
+    cursor: pointer;
+    transition: background var(--transition-speed) ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+/* =========================================================
+   404 ERROR PAGE
+========================================================= */
+
+.error-header {
+    text-align: center;
+    padding: 70px 20px 35px;
+}
+
+.error-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.error-content {
+    max-width: 750px;
+    margin: 0 auto 70px;
+}
+
+.error-content .content-card {
+    text-align: center;
+}
+
+.error-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.error-links a {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.error-links a.button {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    padding: 12px 22px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.error-links a.button:hover {
+    background: var(--color-accent-light);
+}
+
+html[data-theme="dark"] .error-links a:not(.button) {
+    color: var(--color-accent-light);
+}
+
+
+/* =========================================================
+   NEWS SECTION
+========================================================= */
+
+/* Publication dates and event dates */
+
+.post-date,
+.event-date,
+.album-date {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Important notice panel */
+
+.content-panel {
+    background: var(--color-surface-alt);
+    border-left: 4px solid var(--color-accent);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+}
+
+.content-panel h2,
+.content-panel h3 {
+    margin-top: 0;
+}
+
+/* Event cards */
+
+.event-card {
+    margin-bottom: 20px;
+}
+
+.event-card .event-date {
+    font-weight: bold;
+    color: var(--color-accent-text);
+}
+
+/* Gallery */
+
+.gallery-album {
+    margin-bottom: 25px;
+}
+
+.gallery-placeholder {
+    min-height: 180px;
+    background: var(--color-surface-alt);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.gallery-album h3 {
+    margin-top: 0;
+}
+
+.gallery-album p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   PARENTS SECTION
+========================================================= */
+
+/* Parent information and resource cards */
+
+.content-card h3 {
+    margin-top: 0;
+}
+
+/* Parent information lists */
+
+.page-section ul {
+    line-height: 1.8;
+    padding-left: 25px;
+}
+
+/* Donation and volunteer callouts */
+
+.page-section .button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Committee member information */
+
+.committee-member {
+    margin-bottom: 20px;
+}
+
+/* Contact and resource links */
+
+.page-section a:not(.button) {
+    text-underline-offset: 3px;
+}
+
+
+/* =========================================================
+   CADETS SECTION
+========================================================= */
+
+/* Reference and resource cards */
+
+.resource-card {
+    margin-bottom: 20px;
+}
+
+/* Document links */
+
+.document-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Document descriptions */
+
+.document-description {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* Training and information lists */
+
+.page-section ul {
+    line-height: 1.8;
+    padding-left: 25px;
+}
+
+/* Official policy notices */
+
+.policy-notice {
+    background: var(--color-surface-alt);
+    border-left: 4px solid var(--color-accent);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}

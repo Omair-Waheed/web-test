@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-CA">
+
+<head>
+    {% include head.html %}
+</head>
+
+<body>
+
+    <!-- Skip navigation for keyboard and screen-reader users -->
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
+
+
+    <!-- Site header and navigation -->
+    {% include header.html %}
+
+
+    <!-- Main page content -->
+    <main id="main-content" class="site-main">
+
+        <div class="container">
+
+            {{ content }}
+
+        </div>
+
+    </main>
+
+
+    <!-- Site footer -->
+    {% include footer.html %}
+
+
+    <!-- Main JavaScript -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+
+# =====================================================
+# WEBSITE INFORMATION
+# =====================================================
+
+title: "1867 Royal Canadian Army Cadet Corps"
+
+description: >
+  Official website of 1867 Royal Canadian Army Cadet Corps,
+  proudly serving North Delta, British Columbia.
+  
+author: "1867 Royal Canadian Army Cadet Corps"
+
+
+# =====================================================
+# WEBSITE URLS
+# =====================================================
+
+# GitHub Pages project site:
+# url: "https://username.github.io"
+# baseurl: "/1867-rcacc"
+
+# Custom domain:
+# url: "https://www.yourdomain.ca"
+# baseurl: ""
+
+url: ""
+baseurl: ""
+
+
+# =====================================================
+# DEFAULT SETTINGS
+# =====================================================
+
+lang: en-CA
+
+markdown: kramdown
+
+permalink: pretty
+
+
+# =====================================================
+# SOCIAL SHARING
+# =====================================================
+
+social_image: "/assets/images/social-sharing.jpg"
+
+
+# =====================================================
+# BUILD SETTINGS
+# =====================================================
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
