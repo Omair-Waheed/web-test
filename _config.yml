@@ -38,6 +38,8 @@ markdown: kramdown
 
 permalink: pretty
 
+plugins:
+  - jekyll-sitemap
 
 # =====================================================
 # SOCIAL SHARING
