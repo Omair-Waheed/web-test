@@ -327,7 +327,7 @@ a:hover {
 
 /* Main navigation list */
 
-.main-nav ul {
+.main-nav > ul {
     display: flex;
     align-items: center;
     gap: 20px;
