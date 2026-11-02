@@ -87,6 +87,7 @@ if (navToggle && mainNav) {
 ========================================================= */
 
 const dropdownItems = document.querySelectorAll('.has-dropdown');
+const MOBILE_BREAKPOINT = 1000;
 
 dropdownItems.forEach(item => {
 
@@ -110,7 +111,7 @@ dropdownItems.forEach(item => {
     trigger.addEventListener('click', (event) => {
 
         // Desktop navigation retains normal link behaviour
-        if (window.innerWidth > 1000) {
+        if (window.innerWidth > MOBILE_BREAKPOINT) {
             return;
         }
 

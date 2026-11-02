@@ -1,21 +1,26 @@
-
 /* =========================================================
    1867 ROYAL CANADIAN ARMY CADET CORPS
-   Main Stylesheet
+   MAIN STYLESHEET
 
-   Sections:
-   1. CSS Variables
-   2. General / Reset
-   3. Typography
-   4. Buttons and Links
-   5. Header
-   6. Navigation
-   7. Dropdown Navigation
-   8. Main Content
-   9. Footer
-   10. Accessibility
-   11. Responsive Design
-   12. Reduced Motion
+   TABLE OF CONTENTS
+   ---------------------------------------------------------
+   1.  CSS Variables
+   2.  General / Reset
+   3.  Typography
+   4.  Buttons and Links
+   5.  Header and Branding
+   6.  Navigation
+   7.  Dropdown Navigation
+   8.  Main Content
+   9.  Content Components
+   10. News, Events and Gallery
+   11. Parents Section
+   12. Cadets Section
+   13. 404 Error Page
+   14. Footer
+   15. Accessibility
+   16. Responsive Design
+   17. Reduced Motion
 ========================================================= */
 
 
@@ -214,6 +219,8 @@ p {
    4. BUTTONS AND LINKS
 ========================================================= */
 
+/* General links */
+
 a {
     color: inherit;
     text-decoration: none;
@@ -224,7 +231,7 @@ a:hover {
     color: var(--color-accent);
 }
 
-/* General reusable button */
+/* Standard button */
 
 .button {
     display: inline-block;
@@ -240,6 +247,7 @@ a:hover {
     font-weight: 600;
 
     cursor: pointer;
+
     transition:
         background var(--transition-speed) ease,
         color var(--transition-speed) ease;
@@ -250,7 +258,7 @@ a:hover {
     color: var(--color-white);
 }
 
-/* Gold button variation */
+/* Gold button */
 
 .button-accent {
     background: var(--color-accent);
@@ -264,7 +272,7 @@ a:hover {
 
 
 /* =========================================================
-   5. HEADER
+   5. HEADER AND BRANDING
 ========================================================= */
 
 .site-header {
@@ -275,7 +283,7 @@ a:hover {
     color: var(--color-white);
 }
 
-/* Main header container */
+/* Header container */
 
 .nav-container {
     min-height: 80px;
@@ -287,7 +295,7 @@ a:hover {
     gap: 20px;
 }
 
-/* Logo and organization name */
+/* Organization logo and name */
 
 .site-logo {
     display: flex;
@@ -317,7 +325,9 @@ a:hover {
    6. NAVIGATION
 ========================================================= */
 
-.main-nav > ul {
+/* Main navigation list */
+
+.main-nav ul {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -331,9 +341,10 @@ a:hover {
     position: relative;
 }
 
+/* Navigation links */
+
 .main-nav a {
     display: block;
-
     padding: 12px 0;
 
     color: var(--color-white);
@@ -345,7 +356,7 @@ a:hover {
     color: var(--color-accent-light);
 }
 
-/* Join navigation button */
+/* Join button */
 
 .nav-join {
     display: inline-block !important;
@@ -364,7 +375,7 @@ a:hover {
     color: var(--color-primary) !important;
 }
 
-/* Donate navigation button */
+/* Donate button */
 
 .nav-donate {
     display: inline-block !important;
@@ -381,6 +392,36 @@ a:hover {
 .nav-donate:hover {
     background: var(--color-accent);
     color: var(--color-primary) !important;
+}
+
+/* Mobile navigation toggle */
+
+.nav-toggle {
+    display: none;
+
+    padding: 10px;
+
+    background: transparent;
+    border: none;
+    border-radius: var(--border-radius);
+
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    display: block;
+
+    width: 26px;
+    height: 3px;
+
+    margin: 5px 0;
+
+    background: var(--color-white);
+    border-radius: 2px;
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 
@@ -413,7 +454,7 @@ a:hover {
     z-index: 1001;
 }
 
-/* Dropdown links */
+/* Dropdown items */
 
 .dropdown li {
     width: 100%;
@@ -425,7 +466,7 @@ a:hover {
     white-space: nowrap;
 }
 
-/* Show dropdown when hovering or using keyboard */
+/* Desktop hover and keyboard support */
 
 .has-dropdown:hover > .dropdown,
 .has-dropdown:focus-within > .dropdown {
@@ -434,44 +475,7 @@ a:hover {
 
 
 /* =========================================================
-   8. MOBILE NAVIGATION BUTTON
-========================================================= */
-
-/* Hidden on desktop */
-
-.nav-toggle {
-    display: none;
-
-    padding: 10px;
-
-    background: transparent;
-    border: none;
-    border-radius: var(--border-radius);
-
-    cursor: pointer;
-}
-
-/* Hamburger icon */
-
-.nav-toggle span {
-    display: block;
-
-    width: 26px;
-    height: 3px;
-
-    margin: 5px 0;
-
-    background: var(--color-white);
-    border-radius: 2px;
-}
-
-.nav-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-
-/* =========================================================
-   9. MAIN CONTENT
+   8. MAIN CONTENT
 ========================================================= */
 
 .site-main {
@@ -479,9 +483,12 @@ a:hover {
 
     padding-top: 50px;
     padding-bottom: 70px;
+
+    background: var(--color-background);
+    color: var(--color-text);
 }
 
-/* Standard page heading */
+/* Page heading */
 
 .page-header {
     margin-bottom: 35px;
@@ -498,17 +505,37 @@ a:hover {
 
 .page-header p {
     max-width: 750px;
+
     color: var(--color-text-light);
     font-size: 1.1rem;
 }
 
-/* Main page content */
+/* Page content */
 
 .page-content {
     line-height: 1.7;
 }
 
-/* Individual content sections */
+.page-content a:not(.button) {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+html[data-theme="dark"] .page-content a:not(.button) {
+    color: var(--color-accent-light);
+}
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    .page-content a:not(.button) {
+        color: var(--color-accent-light);
+    }
+
+}
+
+/* Page sections */
 
 .page-section {
     margin-bottom: 40px;
@@ -519,7 +546,21 @@ a:hover {
     margin-bottom: 15px;
 }
 
-/* Optional content divider */
+.page-section ul {
+    line-height: 1.8;
+    padding-left: 25px;
+}
+
+.page-section .button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.page-section a:not(.button) {
+    text-underline-offset: 3px;
+}
+
+/* Section divider */
 
 .section-divider {
     border: 0;
@@ -527,8 +568,269 @@ a:hover {
     margin: 40px 0;
 }
 
+
 /* =========================================================
-   10. FOOTER
+   9. CONTENT COMPONENTS
+========================================================= */
+
+/* Standard content cards */
+
+.content-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.content-card h3 {
+    margin-top: 0;
+}
+
+/* Content panels and notices */
+
+.content-panel {
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+
+    border-radius: var(--border-radius);
+
+    padding: 24px;
+    margin-bottom: 25px;
+}
+
+.content-panel h2,
+.content-panel h3 {
+    margin-top: 0;
+}
+
+/* Raised content areas */
+
+.content-panel.raised,
+.content-panel.content-panel-raised {
+    background: var(--color-surface-raised);
+}
+
+/* Tables */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+th {
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+
+td {
+    color: var(--color-text);
+}
+
+/* Form elements */
+
+input,
+textarea,
+select {
+    max-width: 100%;
+    padding: 10px 12px;
+
+    font: inherit;
+
+    color: var(--color-text);
+    background: var(--color-surface-raised);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   10. NEWS, EVENTS AND GALLERY
+========================================================= */
+
+/* Publication and event dates */
+
+.post-date,
+.event-date,
+.album-date {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Event cards */
+
+.event-card {
+    margin-bottom: 20px;
+}
+
+.event-card .event-date {
+    font-weight: bold;
+    color: var(--color-accent-text);
+}
+
+/* Gallery albums */
+
+.gallery-album {
+    margin-bottom: 25px;
+}
+
+.gallery-album h3 {
+    margin-top: 0;
+}
+
+.gallery-album p:last-child {
+    margin-bottom: 0;
+}
+
+/* Gallery placeholders */
+
+.gallery-placeholder {
+    min-height: 180px;
+
+    background: var(--color-surface-alt);
+
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--color-text-muted);
+
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   11. PARENTS SECTION
+========================================================= */
+
+/* Parent information and resources */
+
+.committee-member {
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   12. CADETS SECTION
+========================================================= */
+
+/* Reference and resource cards */
+
+.resource-card {
+    margin-bottom: 20px;
+}
+
+/* Document links */
+
+.document-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Document descriptions */
+
+.document-description {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* Official policy notices */
+
+.policy-notice {
+    background: var(--color-surface-alt);
+
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--border-radius);
+
+    padding: 20px;
+}
+
+
+/* =========================================================
+   13. 404 ERROR PAGE
+========================================================= */
+
+.error-header {
+    text-align: center;
+    padding: 70px 20px 35px;
+}
+
+.error-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.error-content {
+    max-width: 750px;
+    margin: 0 auto 70px;
+}
+
+.error-content .content-card {
+    text-align: center;
+}
+
+/* Error page navigation links */
+
+.error-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.error-links a {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.error-links a.button {
+    background: var(--color-accent);
+    color: var(--color-primary);
+
+    padding: 12px 22px;
+
+    border-radius: var(--border-radius);
+
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.error-links a.button:hover {
+    background: var(--color-accent-light);
+}
+
+html[data-theme="dark"] .error-links a:not(.button) {
+    color: var(--color-accent-light);
+}
+
+
+/* =========================================================
+   14. FOOTER
 ========================================================= */
 
 .site-footer {
@@ -538,7 +840,7 @@ a:hover {
     color: #dddddd;
 }
 
-/* Footer columns */
+/* Footer layout */
 
 .footer-grid {
     display: grid;
@@ -583,7 +885,7 @@ a:hover {
     font-size: 18px;
 }
 
-/* Footer navigation lists */
+/* Footer navigation */
 
 .footer-links ul {
     list-style: none;
@@ -635,7 +937,7 @@ a:hover {
 
 
 /* =========================================================
-   11. ACCESSIBILITY
+   15. ACCESSIBILITY
 ========================================================= */
 
 /* Skip navigation link */
@@ -661,7 +963,7 @@ a:hover {
     top: 10px;
 }
 
-/* Visible keyboard focus */
+/* Keyboard focus indicators */
 
 a:focus-visible,
 button:focus-visible {
@@ -669,24 +971,65 @@ button:focus-visible {
     outline-offset: 4px;
 }
 
+/* Text selection */
+
+::selection {
+    background: var(--color-accent);
+    color: var(--color-primary);
+}
+
 
 /* =========================================================
-   12. RESPONSIVE DESIGN
+   15.1 THEME TOGGLE
 ========================================================= */
 
-/* TABLET AND SMALLER DESKTOP
-   Navigation changes to a collapsible mobile menu.
-*/
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: transparent;
+    color: var(--color-white);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: background var(--transition-speed) ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* =========================================================
+   16. RESPONSIVE DESIGN
+========================================================= */
+
+/* =========================================================
+   16.1 TABLETS AND SMALLER DESKTOPS
+   Breakpoint: 1000px
+========================================================= */
 
 @media (max-width: 1000px) {
 
-    /* Display hamburger button */
+    /* Show mobile navigation toggle */
 
     .nav-toggle {
         display: block;
     }
 
-    /* Main mobile navigation container */
+    /* Mobile navigation container */
 
     .main-nav {
         display: none;
@@ -705,7 +1048,7 @@ button:focus-visible {
         overflow-y: auto;
     }
 
-    /* JavaScript adds this class when opened */
+    /* JavaScript opens the navigation */
 
     .main-nav.active {
         display: block;
@@ -745,13 +1088,13 @@ button:focus-visible {
         box-shadow: none;
     }
 
-    /* Only expand dropdowns when JavaScript adds .open */
+    /* JavaScript expands dropdowns */
 
     .has-dropdown.open > .dropdown {
         display: flex;
     }
 
-    /* Disable desktop hover behaviour on touch-sized layouts */
+    /* Disable desktop hover behaviour */
 
     .has-dropdown:hover > .dropdown {
         display: none;
@@ -761,15 +1104,19 @@ button:focus-visible {
         display: flex;
     }
 
-    /* Footer columns */
+    /* Footer layout */
 
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
 
-/* MOBILE PHONES */
+/* =========================================================
+   16.2 MOBILE PHONES
+   Breakpoint: 550px
+========================================================= */
 
 @media (max-width: 550px) {
 
@@ -811,9 +1158,7 @@ button:focus-visible {
 
 
 /* =========================================================
-   13. REDUCED MOTION
-
-   Respect visitors who prefer reduced animations.
+   17. REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -834,336 +1179,6 @@ button:focus-visible {
 
 
 /* =========================================================
-   DARK MODE COMPONENT ADJUSTMENTS
+   END OF STYLESHEET
+   1867 ROYAL CANADIAN ARMY CADET CORPS
 ========================================================= */
-
-/* Main page backgrounds */
-
-.site-main {
-    background: var(--color-background);
-    color: var(--color-text);
-}
-
-/* Content cards */
-
-.content-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 25px;
-}
-
-/* Raised content areas */
-
-.content-panel {
-    background: var(--color-surface-raised);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 20px;
-}
-
-/* Links within main content */
-
-.page-content a:not(.button) {
-    color: var(--color-primary-light);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-html[data-theme="dark"] .page-content a:not(.button) {
-    color: var(--color-accent-light);
-}
-
-@media (prefers-color-scheme: dark) {
-    html:not([data-theme="light"]):not([data-theme="dark"])
-    .page-content a:not(.button) {
-        color: var(--color-accent-light);
-    }
-}
-
-/* Tables */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-th,
-td {
-    padding: 12px 15px;
-    border: 1px solid var(--color-border);
-    text-align: left;
-}
-
-th {
-    background: var(--color-surface);
-    color: var(--color-text);
-}
-
-td {
-    color: var(--color-text);
-}
-
-/* Form elements */
-
-input,
-textarea,
-select {
-    max-width: 100%;
-    padding: 10px 12px;
-
-    font: inherit;
-
-    color: var(--color-text);
-    background: var(--color-surface-raised);
-
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-}
-
-/* Text selection */
-
-::selection {
-    background: var(--color-accent);
-    color: var(--color-primary);
-}
-
-/* Theme toggle button (for future header integration) */
-
-.theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 40px;
-    height: 40px;
-
-    background: transparent;
-    color: var(--color-white);
-
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 50%;
-
-    cursor: pointer;
-    transition: background var(--transition-speed) ease;
-}
-
-.theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.theme-toggle svg {
-    width: 20px;
-    height: 20px;
-}
-
-
-
-/* =========================================================
-   404 ERROR PAGE
-========================================================= */
-
-.error-header {
-    text-align: center;
-    padding: 70px 20px 35px;
-}
-
-.error-header h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-}
-
-.error-content {
-    max-width: 750px;
-    margin: 0 auto 70px;
-}
-
-.error-content .content-card {
-    text-align: center;
-}
-
-.error-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.error-links a {
-    color: var(--color-primary-light);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.error-links a.button {
-    background: var(--color-accent);
-    color: var(--color-primary);
-    padding: 12px 22px;
-    border-radius: var(--border-radius);
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.error-links a.button:hover {
-    background: var(--color-accent-light);
-}
-
-html[data-theme="dark"] .error-links a:not(.button) {
-    color: var(--color-accent-light);
-}
-
-
-/* =========================================================
-   NEWS SECTION
-========================================================= */
-
-/* Publication dates and event dates */
-
-.post-date,
-.event-date,
-.album-date {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-/* Important notice panel */
-
-.content-panel {
-    background: var(--color-surface-alt);
-    border-left: 4px solid var(--color-accent);
-    padding: 24px;
-    border-radius: var(--border-radius);
-    margin-bottom: 25px;
-}
-
-.content-panel h2,
-.content-panel h3 {
-    margin-top: 0;
-}
-
-/* Event cards */
-
-.event-card {
-    margin-bottom: 20px;
-}
-
-.event-card .event-date {
-    font-weight: bold;
-    color: var(--color-accent-text);
-}
-
-/* Gallery */
-
-.gallery-album {
-    margin-bottom: 25px;
-}
-
-.gallery-placeholder {
-    min-height: 180px;
-    background: var(--color-surface-alt);
-    border: 1px dashed var(--color-border);
-    border-radius: var(--border-radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.gallery-album h3 {
-    margin-top: 0;
-}
-
-.gallery-album p:last-child {
-    margin-bottom: 0;
-}
-
-
-/* =========================================================
-   PARENTS SECTION
-========================================================= */
-
-/* Parent information and resource cards */
-
-.content-card h3 {
-    margin-top: 0;
-}
-
-/* Parent information lists */
-
-.page-section ul {
-    line-height: 1.8;
-    padding-left: 25px;
-}
-
-/* Donation and volunteer callouts */
-
-.page-section .button {
-    display: inline-block;
-    margin-top: 10px;
-}
-
-/* Committee member information */
-
-.committee-member {
-    margin-bottom: 20px;
-}
-
-/* Contact and resource links */
-
-.page-section a:not(.button) {
-    text-underline-offset: 3px;
-}
-
-
-/* =========================================================
-   CADETS SECTION
-========================================================= */
-
-/* Reference and resource cards */
-
-.resource-card {
-    margin-bottom: 20px;
-}
-
-/* Document links */
-
-.document-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: 600;
-}
-
-/* Document descriptions */
-
-.document-description {
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-}
-
-/* Training and information lists */
-
-.page-section ul {
-    line-height: 1.8;
-    padding-left: 25px;
-}
-
-/* Official policy notices */
-
-.policy-notice {
-    background: var(--color-surface-alt);
-    border-left: 4px solid var(--color-accent);
-    padding: 20px;
-    border-radius: var(--border-radius);
-}
